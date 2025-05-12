@@ -1,12 +1,12 @@
 import React from 'react';
 function App() {
-	const num1 = 3;
-	const num2 = 2;
+	const name = 'john';
+	const surname = 'smit';
 	
 	return <div>
-		result: {num1 ** num2}
+		result: {name + ' ' + surname}
 	</div>;
 }
-//9
+//result: john smit
 
 export default App;
