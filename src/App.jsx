@@ -1,12 +1,16 @@
 import React from 'react';
 function App() {
-  const isAuth = false;
-  
-  return (
-    <div>
-      {!isAuth && <p>пожалуйста, авторизуйтесь</p>}
-    </div>
-  );
+  // Функция для вычисления суммы цифр числа
+  function getDigitsSum(num) {
+    return String(num)
+      .split('')
+      .reduce((sum, digit) => sum + Number(digit), 0);
+  }
+
+  const number = 123;
+  const sum = getDigitsSum(number);
+
+  return <div>Сумма цифр числа {number}: {sum}</div>;
 }
  
 export default App;
