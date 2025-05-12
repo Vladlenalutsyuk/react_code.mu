@@ -4,13 +4,15 @@ function App() {
   function getDigitsSum(num) {
     return String(num)
       .split('')
-      .reduce((sum, digit) => sum + Number(digit), 0);
+      .map(Number)
+      .reduce((sum, digit) => sum + digit, 0);
   }
 
-  const number = 123;
-  const sum = getDigitsSum(number);
-
-  return <div>Сумма цифр числа {number}: {sum}</div>;
+  return (
+    <p>
+      Сумма цифр числа 12345: {getDigitsSum(12345)}
+    </p>
+  );
 }
  
 export default App;
