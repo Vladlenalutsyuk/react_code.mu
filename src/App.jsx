@@ -1,11 +1,15 @@
 import React from 'react';
 function App() {
-	const num = 4;
-	
-	return <div>
-		result: {Math.sqrt(num)}
-	</div>;
+  const isAdult = true;
+  let message;
+
+  if (isAdult) {
+    message = <p>Вам уже есть 18 лет</p>;
+  } else {
+    message = <p>Вам ещё нет 18 лет</p>;
+  }
+
+  return <div>{message}</div>;
 }
-//result: 2
 
 export default App;
