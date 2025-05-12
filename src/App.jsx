@@ -1,17 +1,16 @@
 import React from 'react';
 function App() {
-  const isAdmin = true;
-  let content;
-
-  if (isAdmin) {
-    content = (
-      <div>
-        <p>Параграф 1</p>
-        <p>Параграф 2</p>
-      </div>
-    );
-  }
-
-  return content;
+  const age = 19;
+  
+  return (
+    <div>
+      {age > 18 ? (
+        <p>Вам уже есть 18 лет, доступ разрешён</p>
+      ) : (
+        <p>Вам ещё нет 18 лет, доступ запрещён</p>
+      )}
+    </div>
+  );
 }
+ 
 export default App;
