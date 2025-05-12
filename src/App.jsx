@@ -1,12 +1,11 @@
 import React from 'react';
 function App() {
-	const name = 'john';
-	const surname = 'smit';
+	const num = 4;
 	
 	return <div>
-		result: {name + ' ' + surname}
+		result: {Math.sqrt(num)}
 	</div>;
 }
-//result: john smit
+//result: 2
 
 export default App;
