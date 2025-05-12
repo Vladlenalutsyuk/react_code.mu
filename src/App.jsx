@@ -1,3 +1,9 @@
 function App() {
-	return <input />;
+  return (
+    <>
+      <input />
+      <input />
+      <input />
+    </>
+  );
 }
