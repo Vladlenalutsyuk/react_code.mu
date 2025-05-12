@@ -1,17 +1,18 @@
 import React from 'react';
 function App() {
-  // Функция для вычисления суммы цифр числа
-  function getDigitsSum(num) {
-    return String(num)
-      .split('')
-      .map(Number)
-      .reduce((sum, digit) => sum + digit, 0);
+  function show1() {
+    alert(1);
   }
-
+  
+  function show2() {
+    alert(2);
+  }
+  
   return (
-    <p>
-      Сумма цифр числа 12345: {getDigitsSum(12345)}
-    </p>
+    <div>
+      <button onClick={show1}>act1</button>
+      <button onClick={show2}>act2</button>
+    </div>
   );
 }
  
