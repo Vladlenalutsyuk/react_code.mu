@@ -1,15 +1,17 @@
 import React from 'react';
 function App() {
-  const isAdult = true;
-  let message;
+  const isAdmin = true;
+  let content;
 
-  if (isAdult) {
-    message = <p>Вам уже есть 18 лет</p>;
-  } else {
-    message = <p>Вам ещё нет 18 лет</p>;
+  if (isAdmin) {
+    content = (
+      <div>
+        <p>Параграф 1</p>
+        <p>Параграф 2</p>
+      </div>
+    );
   }
 
-  return <div>{message}</div>;
+  return content;
 }
-
 export default App;
