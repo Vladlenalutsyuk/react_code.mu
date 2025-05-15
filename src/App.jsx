@@ -1,25 +1,25 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
-import uuid from 'react-uuid';
 
-function IdGenerator() {
+// Функция-обертка для генерации ID с помощью nanoid
+function id() {
+  return nanoid(); // Генерирует ID типа "V1StGXR8_Z5jdHi6B-myT"
+}
+
+// Пример использования
+function App() {
+  const items = [
+    { name: 'Item 1', id: id() },
+    { name: 'Item 2', id: id() },
+    { name: 'Item 3', id: id() }
+  ];
+
   return (
-    <div>
-      <h2>Генерация ID</h2>
-      
-      <h3>Nanoid:</h3>
-      <p>{nanoid()}</p>
-      
-      <h3>React UUID:</h3>
-      <p>{uuid()}</p>
-      
-      <h3>Пример использования в списке:</h3>
-      <ul>
-        {[1, 2, 3].map(() => (
-          <li key={nanoid()}>Элемент с nanoid ключом</li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {items.map(item => (
+        <li key={item.id}>{item.name} (ID: {item.id})</li>
+      ))}
+    </ul>
   );
 }
 export default App;
