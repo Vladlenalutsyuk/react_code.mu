@@ -1,32 +1,33 @@
 import React from 'react';
 
-function App() {
-  const [number, setNumber] = useState('');
-  const [product, setProduct] = useState(0);
 
-  const calculateProduct = () => {
-    const num = Math.abs(Number(number));
-    let divisors = [];
-    
-    for (let i = 1; i <= num; i++) {
-      if (num % i === 0) {
-        divisors.push(i);
-      }
-    }
-    
-    setProduct(divisors.reduce((acc, val) => acc * val, 1));
-  };
+function translit(text) {
+  const cyrillic = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
+  const latin = 'abvgdeejzijklmnoprstufhzcss_y_euaABVGDEEJZIJKLMNOPRSTUFHZCSS_Y_EUA';
+  
+  return text.split('').map(char => {
+    const index = cyrillic.indexOf(char);
+    return index >= 0 ? latin[index] : char;
+  }).join('');
+}
+
+function App() {
+  const [text, setText] = useState('');
 
   return (
-    <div>
-      <input 
-        type="number" 
-        value={number} 
-        onChange={e => setNumber(e.target.value)}
-        onBlur={calculateProduct}
+    <div style={{ padding: '20px' }}>
+      <textarea
+        value={text}
+        onChange={e => setText(e.target.value)}
+        placeholder="Введите текст на русском"
+        style={{ width: '300px', height: '100px', padding: '8px' }}
       />
-      <p>Произведение делителей: {product}</p>
+      <p style={{ marginTop: '10px' }}>
+        Транслит: <strong>{translit(text)}</strong>
+      </p>
     </div>
   );
 }
+
+
 export default App;
