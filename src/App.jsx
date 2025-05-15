@@ -1,18 +1,26 @@
 import React from 'react';
 
+
+function getBirthYear(age) {
+  const currentYear = new Date().getFullYear();
+  return currentYear - age;
+}
+
 function App() {
-  const [text, setText] = useState('');
+  const [age, setAge] = useState('');
 
   return (
     <div style={{ padding: '20px' }}>
       <input
-        type="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Введите текст"
-        style={{ padding: '8px', width: '300px' }}
+        type="number"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+        placeholder="Введите ваш возраст"
+        style={{ padding: '8px', width: '200px' }}
       />
-      <p>Количество символов: {text.length}</p>
+      <p>
+        {age ? `Ваш год рождения: ${getBirthYear(Number(age))}` : 'Введите возраст'}
+      </p>
     </div>
   );
 }
