@@ -1,9 +1,9 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
+import uuid from 'react-uuid';
 
-// Функция-обертка для генерации ID с помощью nanoid
+// Функция-обертка для генерации ID с помощью react-uuid
 function id() {
-  return nanoid(); // Генерирует ID типа "V1StGXR8_Z5jdHi6B-myT"
+  return uuid(); // Генерирует UUID типа "2d5f3b4e-5b7e-4b3e-9e5d-3b3e5b7e4b3e"
 }
 
 // Пример использования
