@@ -1,15 +1,11 @@
 import React from 'react';
 function App() {
-  const showNumber = (num) => {
-    alert(num);
-  };
+  function handleClick(event) {
+    console.log(event); // SyntheticEvent объект
+  }
 
   return (
-    <div>
-      <button onClick={() => showNumber(1)}>act1</button>
-      <button onClick={() => showNumber(2)}>act2</button>
-      <button onClick={() => showNumber(3)}>act3</button>
-    </div>
+    <button onClick={handleClick}>Click me</button>
   );
 }
 export default App;
