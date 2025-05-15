@@ -5,15 +5,26 @@ function App() {
 
   return (
     <div>
-      <p>Статус: {isBanned ? 'Забанен' : 'Активен'}</p>
+      <h2>Статус пользователя:</h2>
+      <p style={{ color: isBanned ? 'red' : 'green' }}>
+        {isBanned ? '🚫 Пользователь забанен' : '✅ Пользователь активен'}
+      </p>
       
-      <button onClick={() => setIsBanned(true)}>
-        Забанить
-      </button>
-      
-      <button onClick={() => setIsBanned(false)}>
-        Разбанить
-      </button>
+      {isBanned ? (
+        <button 
+          onClick={() => setIsBanned(false)}
+          style={{ backgroundColor: 'lightgreen' }}
+        >
+          Разбанить
+        </button>
+      ) : (
+        <button 
+          onClick={() => setIsBanned(true)}
+          style={{ backgroundColor: 'salmon' }}
+        >
+          Забанить
+        </button>
+      )}
     </div>
   );
 }
