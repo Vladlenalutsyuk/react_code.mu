@@ -1,20 +1,34 @@
 import React from 'react';
-import React, { useState } from 'react';
+
 
 function App() {
   // Стейты для данных пользователя
   const [name, setName] = useState('Иван');
   const [surname, setSurname] = useState('Иванов');
-  const [age, setAge] = useState(30);
+
+  // Функции для изменения данных
+  const changeName = () => setName('Пётр');
+  const changeSurname = () => setSurname('Петров');
+  const resetAll = () => {
+    setName('Иван');
+    setSurname('Иванов');
+  };
 
   return (
     <div>
       <h2>Данные пользователя:</h2>
-      <ul>
-        <li>Имя: <span>{name}</span></li>
-        <li>Фамилия: <span>{surname}</span></li>
-        <li>Возраст: <span>{age}</span></li>
-      </ul>
+      <p>Имя: <strong>{name}</strong></p>
+      <p>Фамилия: <strong>{surname}</strong></p>
+      
+      <div style={{ marginTop: '20px' }}>
+        <button onClick={changeName}>Изменить имя</button>
+        <button onClick={changeSurname} style={{ marginLeft: '10px' }}>
+          Изменить фамилию
+        </button>
+        <button onClick={resetAll} style={{ marginLeft: '10px' }}>
+          Сбросить
+        </button>
+      </div>
     </div>
   );
 }
