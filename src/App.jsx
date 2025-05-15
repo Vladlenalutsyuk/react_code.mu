@@ -1,32 +1,23 @@
 import React from 'react';
 
 function App() {
-  const today = new Date().toISOString().split('T')[0];
-  const [date1, setDate1] = useState(today);
-  const [date2, setDate2] = useState(today);
-  const [diffDays, setDiffDays] = useState(0);
+  const [number, setNumber] = useState('');
+  const [sum, setSum] = useState(0);
 
-  const calculateDiff = () => {
-    const d1 = new Date(date1);
-    const d2 = new Date(date2);
-    const diffTime = Math.abs(d2 - d1);
-    setDiffDays(Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+  const calculateSum = () => {
+    const digits = number.toString().split('').map(Number);
+    setSum(digits.reduce((acc, digit) => acc + digit, 0));
   };
 
   return (
     <div>
       <input 
-        type="date" 
-        value={date1} 
-        onChange={e => setDate1(e.target.value)} 
+        type="number" 
+        value={number} 
+        onChange={e => setNumber(e.target.value)}
+        onBlur={calculateSum}
       />
-      <input 
-        type="date" 
-        value={date2} 
-        onChange={e => setDate2(e.target.value)} 
-      />
-      <button onClick={calculateDiff}>Рассчитать разницу</button>
-      <p>Разница: {diffDays} дней</p>
+      <p>Сумма цифр: {sum}</p>
     </div>
   );
 }
