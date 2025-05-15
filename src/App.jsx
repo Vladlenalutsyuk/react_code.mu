@@ -1,48 +1,37 @@
 import React from 'react';
 
-
-
 function App() {
-  const [isAdult, setIsAdult] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div style={{ padding: '20px' }}>
-      <label style={{ display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
+      <label style={{ display: 'flex', alignItems: 'center' }}>
         <input
           type="checkbox"
-          checked={isAdult}
-          onChange={() => setIsAdult(!isAdult)}
+          checked={isVisible}
+          onChange={() => setIsVisible(!isVisible)}
           style={{ marginRight: '10px' }}
         />
-        Мне уже есть 18 лет
+        Показать абзац
       </label>
 
-      {isAdult ? (
-        <div style={{ 
-          backgroundColor: '#f0f0f0', 
-          padding: '15px', 
-          borderRadius: '5px',
-          border: '1px solid #ddd'
+      {isVisible && (
+        <p style={{ 
+          marginTop: '15px',
+          padding: '10px',
+          backgroundColor: '#e9f7ef',
+          borderRadius: '5px'
         }}>
-          <h2 style={{ color: 'green' }}>Ура, вам уже есть 18!</h2>
-          <p>Здесь расположен контент только для взрослых</p>
-        </div>
-      ) : (
-        <div style={{ 
-          backgroundColor: '#fff3cd', 
-          padding: '15px', 
-          borderRadius: '5px',
-          border: '1px solid #ffeeba'
-        }}>
-          <p style={{ color: '#856404' }}>Увы, вам еще нет 18 лет :(</p>
-        </div>
+          Этот абзац виден только когда чекбокс отмечен!
+        </p>
       )}
     </div>
   );
 }
 
-
-
-
-
 export default App;
+
+
+
+
+
