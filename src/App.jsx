@@ -1,67 +1,47 @@
 import React from 'react';
 
 
-function App() {
-  const [languages, setLanguages] = useState({
-    html: false,
-    css: false,
-    js: false
-  });
 
-  const handleChange = (lang) => {
-    setLanguages({
-      ...languages,
-      [lang]: !languages[lang]
-    });
-  };
+function App() {
+  const [isAdult, setIsAdult] = useState(false);
 
   return (
     <div style={{ padding: '20px' }}>
-      <h3>Какие языки вы знаете?</h3>
-      
-      <div style={{ marginBottom: '15px' }}>
+      <label style={{ display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
         <input
           type="checkbox"
-          id="html"
-          checked={languages.html}
-          onChange={() => handleChange('html')}
+          checked={isAdult}
+          onChange={() => setIsAdult(!isAdult)}
+          style={{ marginRight: '10px' }}
         />
-        <label htmlFor="html" style={{ marginLeft: '5px' }}>HTML</label>
-        <p>HTML: {languages.html ? '✓' : '✗'}</p>
-      </div>
-      
-      <div style={{ marginBottom: '15px' }}>
-        <input
-          type="checkbox"
-          id="css"
-          checked={languages.css}
-          onChange={() => handleChange('css')}
-        />
-        <label htmlFor="css" style={{ marginLeft: '5px' }}>CSS</label>
-        <p>CSS: {languages.css ? '✓' : '✗'}</p>
-      </div>
-      
-      <div style={{ marginBottom: '15px' }}>
-        <input
-          type="checkbox"
-          id="js"
-          checked={languages.js}
-          onChange={() => handleChange('js')}
-        />
-        <label htmlFor="js" style={{ marginLeft: '5px' }}>JavaScript</label>
-        <p>JavaScript: {languages.js ? '✓' : '✗'}</p>
-      </div>
-      
-      <p style={{ marginTop: '20px', fontWeight: 'bold' }}>
-        Вы знаете: {[
-          languages.html && 'HTML',
-          languages.css && 'CSS',
-          languages.js && 'JavaScript'
-        ].filter(Boolean).join(', ') || 'ничего'}
-      </p>
+        Мне уже есть 18 лет
+      </label>
+
+      {isAdult ? (
+        <div style={{ 
+          backgroundColor: '#f0f0f0', 
+          padding: '15px', 
+          borderRadius: '5px',
+          border: '1px solid #ddd'
+        }}>
+          <h2 style={{ color: 'green' }}>Ура, вам уже есть 18!</h2>
+          <p>Здесь расположен контент только для взрослых</p>
+        </div>
+      ) : (
+        <div style={{ 
+          backgroundColor: '#fff3cd', 
+          padding: '15px', 
+          borderRadius: '5px',
+          border: '1px solid #ffeeba'
+        }}>
+          <p style={{ color: '#856404' }}>Увы, вам еще нет 18 лет :(</p>
+        </div>
+      )}
     </div>
   );
 }
+
+
 
 
 
