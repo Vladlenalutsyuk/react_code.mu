@@ -7,13 +7,26 @@ function App() {
   ];
 
   return (
-    <ul>
-      {users.map(user => (
-        <li key={user.id}>
-          {user.name} {user.surn}, возраст: {user.age}
-        </li>
-      ))}
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Имя</th>
+          <th>Фамилия</th>
+          <th>Возраст</th>
+        </tr>
+      </thead>
+      <tbody>
+        {users.map(user => (
+          <tr key={user.id}>
+            <td>{user.id}</td>
+            <td>{user.name}</td>
+            <td>{user.surn}</td>
+            <td>{user.age}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
 export default App;
