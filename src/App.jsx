@@ -1,30 +1,48 @@
 import React from 'react';
 
+
 function App() {
-  const [isBanned, setIsBanned] = useState(false);
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount(count + 1);
+  const decrement = () => setCount(count - 1);
 
   return (
-    <div>
-      <h2>Статус пользователя:</h2>
-      <p style={{ color: isBanned ? 'red' : 'green' }}>
-        {isBanned ? '🚫 Пользователь забанен' : '✅ Пользователь активен'}
+    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      <p style={{ fontSize: '24px', fontWeight: 'bold' }}>
+        Текущее значение: {count}
       </p>
       
-      {isBanned ? (
+      <div style={{ marginTop: '20px' }}>
         <button 
-          onClick={() => setIsBanned(false)}
-          style={{ backgroundColor: 'lightgreen' }}
+          onClick={increment}
+          style={{
+            padding: '10px 20px',
+            fontSize: '18px',
+            marginRight: '10px',
+            backgroundColor: '#4CAF50',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px'
+          }}
         >
-          Разбанить
+          Увеличить (+)
         </button>
-      ) : (
+        
         <button 
-          onClick={() => setIsBanned(true)}
-          style={{ backgroundColor: 'salmon' }}
+          onClick={decrement}
+          style={{
+            padding: '10px 20px',
+            fontSize: '18px',
+            backgroundColor: '#f44336',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px'
+          }}
         >
-          Забанить
+          Уменьшить (-)
         </button>
-      )}
+      </div>
     </div>
   );
 }
