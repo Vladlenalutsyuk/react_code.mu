@@ -1,50 +1,39 @@
 import React from 'react';
 
 
-function App() {
-  const [count, setCount] = useState(0);
 
-  const increment = () => setCount(count + 1);
-  const decrement = () => setCount(count - 1);
+function App() {
+  // Стейты для каждого инпута
+  const [input1Value, setInput1Value] = useState('');
+  const [input2Value, setInput2Value] = useState('');
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <p style={{ fontSize: '24px', fontWeight: 'bold' }}>
-        Текущее значение: {count}
-      </p>
-      
-      <div style={{ marginTop: '20px' }}>
-        <button 
-          onClick={increment}
-          style={{
-            padding: '10px 20px',
-            fontSize: '18px',
-            marginRight: '10px',
-            backgroundColor: '#4CAF50',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px'
-          }}
-        >
-          Увеличить (+)
-        </button>
-        
-        <button 
-          onClick={decrement}
-          style={{
-            padding: '10px 20px',
-            fontSize: '18px',
-            backgroundColor: '#f44336',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px'
-          }}
-        >
-          Уменьшить (-)
-        </button>
+    <div style={{ padding: '20px' }}>
+      <div style={{ marginBottom: '15px' }}>
+        <input
+          type="text"
+          value={input1Value}
+          onChange={(e) => setInput1Value(e.target.value)}
+          placeholder="Первый инпут"
+          style={{ padding: '8px', width: '200px' }}
+        />
+        <p>Текст первого инпута: {input1Value}</p>
+      </div>
+
+      <div>
+        <input
+          type="text"
+          value={input2Value}
+          onChange={(e) => setInput2Value(e.target.value)}
+          placeholder="Второй инпут"
+          style={{ padding: '8px', width: '200px' }}
+        />
+        <p>Текст второго инпута: {input2Value}</p>
       </div>
     </div>
   );
 }
+
+
 
 export default App;
