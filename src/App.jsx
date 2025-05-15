@@ -1,35 +1,41 @@
 import React from 'react';
 
 function App() {
-  const [values, setValues] = useState([0, 0, 0, 0, 0]);
-
-  const handleChange = (index) => (event) => {
-    const newValues = [...values];
-    newValues[index] = Number(event.target.value) || 0;
-    setValues(newValues);
-  };
-
-  const average = values.reduce((sum, num) => sum + num, 0) / values.length;
+  const [num1, setNum1] = useState(0);
+  const [num2, setNum2] = useState(0);
+  const [result, setResult] = useState(0);
 
   return (
     <div style={{ padding: '20px' }}>
-      {values.map((value, index) => (
-        <div key={index} style={{ marginBottom: '10px' }}>
-          <input
-            type="number"
-            value={value}
-            onChange={handleChange(index)}
-            placeholder={`Число ${index + 1}`}
-            style={{ padding: '8px', width: '200px' }}
-          />
-        </div>
-      ))}
-      <p style={{ fontSize: '18px', fontWeight: 'bold' }}>
-        Среднее арифметическое: {average.toFixed(2)}
+      <input 
+        type="number" 
+        value={num1} 
+        onChange={e => setNum1(Number(e.target.value))} 
+        style={{ marginRight: '10px' }}
+      />
+      <input 
+        type="number" 
+        value={num2} 
+        onChange={e => setNum2(Number(e.target.value))} 
+      />
+      
+      <div style={{ marginTop: '10px' }}>
+        <button 
+          onClick={() => setResult(num1 + num2)}
+          style={{ marginRight: '10px' }}
+        >
+          Сумма
+        </button>
+        <button onClick={() => setResult(num1 * num2)}>
+          Произведение
+        </button>
+      </div>
+      
+      <p style={{ marginTop: '10px', fontSize: '18px' }}>
+        Результат: {result}
       </p>
     </div>
   );
 }
-
 
 export default App;
