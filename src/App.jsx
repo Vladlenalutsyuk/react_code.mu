@@ -1,25 +1,30 @@
 import React from 'react';
-import uuid from 'react-uuid';
+import { nanoid } from 'nanoid'; // или import uuid from 'react-uuid';
 
-// Функция-обертка для генерации ID с помощью react-uuid
+// Функция для генерации ID
 function id() {
-  return uuid(); // Генерирует UUID типа "2d5f3b4e-5b7e-4b3e-9e5d-3b3e5b7e4b3e"
+  return nanoid(); // или return uuid(); для UUID
 }
 
-// Пример использования
-function App() {
-  const items = [
-    { name: 'Item 1', id: id() },
-    { name: 'Item 2', id: id() },
-    { name: 'Item 3', id: id() }
-  ];
+// Массив пользователей с автоматически сгенерированными ID
+const users = [
+  {id: id(), name: 'user1', surn: 'surn1', age: 30},
+  {id: id(), name: 'user2', surn: 'surn2', age: 31},
+  {id: id(), name: 'user3', surn: 'surn3', age: 32},
+];
 
+function App() {
   return (
-    <ul>
-      {items.map(item => (
-        <li key={item.id}>{item.name} (ID: {item.id})</li>
-      ))}
-    </ul>
+    <div>
+      <h2>Список пользователей:</h2>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>
+            {user.name} {user.surn}, возраст: {user.age} (ID: {user.id})
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 export default App;
