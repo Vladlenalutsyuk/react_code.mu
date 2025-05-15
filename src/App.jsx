@@ -1,32 +1,25 @@
 import React from 'react';
-function App() {
-  const users = [
-    {id: 1, name: 'user1', surn: 'surn1', age: 30},
-    {id: 2, name: 'user2', surn: 'surn2', age: 31},
-    {id: 3, name: 'user3', surn: 'surn3', age: 32},
-  ];
+import { nanoid } from 'nanoid';
+import uuid from 'react-uuid';
 
+function IdGenerator() {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Имя</th>
-          <th>Фамилия</th>
-          <th>Возраст</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map(user => (
-          <tr key={user.id}>
-            <td>{user.id}</td>
-            <td>{user.name}</td>
-            <td>{user.surn}</td>
-            <td>{user.age}</td>
-          </tr>
+    <div>
+      <h2>Генерация ID</h2>
+      
+      <h3>Nanoid:</h3>
+      <p>{nanoid()}</p>
+      
+      <h3>React UUID:</h3>
+      <p>{uuid()}</p>
+      
+      <h3>Пример использования в списке:</h3>
+      <ul>
+        {[1, 2, 3].map(() => (
+          <li key={nanoid()}>Элемент с nanoid ключом</li>
         ))}
-      </tbody>
-    </table>
+      </ul>
+    </div>
   );
 }
 export default App;
