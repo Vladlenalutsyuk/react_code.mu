@@ -1,8 +1,9 @@
 import React from 'react';
 
 function App() {
-  const [date1, setDate1] = useState('');
-  const [date2, setDate2] = useState('');
+  const today = new Date().toISOString().split('T')[0];
+  const [date1, setDate1] = useState(today);
+  const [date2, setDate2] = useState(today);
   const [diffDays, setDiffDays] = useState(0);
 
   const calculateDiff = () => {
