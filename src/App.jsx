@@ -1,12 +1,12 @@
 import React from 'react';
 function App() {
-  function func(event, param1, param2) {
-    console.log(event, param1, param2);
+  function func(param1, event, param2) {
+    console.log(param1, event, param2);
   }
   
   return (
     <div>
-      <button onClick={event => func(event, 'eee', 'bbb')}>act</button>
+      <button onClick={event => func('eee', event, 'bbb')}>act</button>
     </div>
   );
 }
