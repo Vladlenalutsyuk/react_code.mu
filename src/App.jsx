@@ -1,7 +1,7 @@
 import React from 'react';
 function App() {
   function handleClick(event) {
-    console.log(event); // SyntheticEvent объект
+    console.log(event.target); // DOM-элемент кнопки
   }
 
   return (
