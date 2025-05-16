@@ -1,42 +1,53 @@
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid'; // для генерации уникальных id
-
-const initNotes = [
-  {
-    id: 'GYi9G_uC4gBF1e2SixDvu',
-    prop1: 'value11',
-    prop2: 'value12',
-    prop3: 'value13',
-  },
-  {
-    id: 'IWSpfBPSV3SXgRF87uO74',
-    prop1: 'value21',
-    prop2: 'value22',
-    prop3: 'value23',
-  },
-  {
-    id: 'JAmjRlfQT8rLTm5tG2m1L',
-    prop1: 'value31',
-    prop2: 'value32',
-    prop3: 'value33',
-  },
-];
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [notes, setNotes] = useState(initNotes);
-  
-  const addNewNote = () => {
-    const newNote = {
-      id: uuidv4(),
-      prop1: `value${notes.length + 1}1`,
-      prop2: `value${notes.length + 1}2`,
-      prop3: `value${notes.length + 1}3`,
-    };
-    setNotes([...notes, newNote]);
+  const [inputValues, setInputValues] = useState({
+    prop1: '',
+    prop2: '',
+    prop3: ''
+  });
+
+  const handleInputChange = (prop, value) => {
+    setInputValues({
+      ...inputValues,
+      [prop]: value
+    });
   };
-  
+
+  const addNoteFromInputs = () => {
+    if (inputValues.prop1 && inputValues.prop2 && inputValues.prop3) {
+      const newNote = {
+        id: uuidv4(),
+        ...inputValues
+      };
+      setNotes([...notes, newNote]);
+      setInputValues({ prop1: '', prop2: '', prop3: '' });
+    }
+  };
+
   return (
     <div>
+      <div>
+        <input
+          value={inputValues.prop1}
+          onChange={(e) => handleInputChange('prop1', e.target.value)}
+          placeholder="Значение 1"
+        />
+        <input
+          value={inputValues.prop2}
+          onChange={(e) => handleInputChange('prop2', e.target.value)}
+          placeholder="Значение 2"
+        />
+        <input
+          value={inputValues.prop3}
+          onChange={(e) => handleInputChange('prop3', e.target.value)}
+          placeholder="Значение 3"
+        />
+        <button onClick={addNoteFromInputs}>Добавить</button>
+      </div>
+      
       <ul>
         {notes.map(note => (
           <li key={note.id}>
@@ -46,7 +57,6 @@ function App() {
           </li>
         ))}
       </ul>
-      <button onClick={addNewNote}>Добавить элемент</button>
     </div>
   );
 }
