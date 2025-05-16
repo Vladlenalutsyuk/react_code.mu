@@ -1,11 +1,14 @@
 // src/App.js
-import Inputs from './Inputs';
+import classes from './App.module.css';
+import Inputs from './components/Inputs';
 
 function App() {
   return (
-    <div>
-      <h1>Inputs App</h1>
-      <Inputs />
+    <div className={classes.app}>
+      <h2 className={classes.title}>CSS Module Inputs</h2>
+      <div className={classes.wrapper}>
+        <Inputs />
+      </div>
     </div>
   );
 }
