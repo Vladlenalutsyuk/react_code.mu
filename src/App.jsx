@@ -1,36 +1,35 @@
-import React from 'react';
 import styled from 'styled-components';
 
-// Стилизованный контейнер (div)
+// Стилизованный див DIVA (Задача №1)
+const DIVA = styled.div`
+  width: 150px;
+  height: 150px;
+  background-color: yellow;
+  border: 2px solid black;
+`;
+
+// Стилизованный див DIVB на базе DIVA (Задача №2)
+const DIVB = styled(DIVA)`
+  background-color: green;
+  border: 3px solid black;
+`;
+
+// Стилизованный контейнер (для Задачи №3)
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 200px;
   gap: 10px;
 `;
 
-// Стилизованная кнопка
-const Button = styled.button`
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  background-color: ${props => (props.warn ? 'yellow' : 'green')};
-  color: ${props => (props.warn ? 'red' : 'white')};
-  &:hover {
-    background-color: ${props => (props.disabled ? '#f0f0f0' : props.warn ? '#ffeb3b' : '#4caf50')};
-  }
-`;
-
-function Block() {
+// Компонент Block1 (Задача №3)
+function Block1() {
   return (
     <Container>
-      <Button disabled>Button 1</Button>
-      <Button warn>Button 2</Button>
-      <Button type="reset">Button 3</Button>
+      <DIVA />
+      <DIVB />
+      <DIVA />
     </Container>
   );
 }
 
-export default Block;
+export default Block1;
