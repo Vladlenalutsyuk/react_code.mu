@@ -1,67 +1,46 @@
 import React from 'react';
 
-// Компонент Book
-function Book({ title, author, year, price }) {
+// Функция для генерации id (предполагаемая реализация)
+function id() {
+  return Math.random().toString(36).substring(2, 9);
+}
+
+// Компонент User для вывода данных в строке таблицы
+function User({ name, surn, age }) {
   return (
-    <div style={{
-      border: '1px solid #eee',
-      padding: '15px',
-      margin: '10px',
-      borderRadius: '5px',
-      backgroundColor: '#f8f9fa'
-    }}>
-      <h3>{title}</h3>
-      <p><strong>Автор:</strong> {author}</p>
-      <p><strong>Год издания:</strong> {year}</p>
-      <p><strong>Цена:</strong> {price} руб.</p>
-    </div>
+    <tr>
+      <td>{name}</td>
+      <td>{surn}</td>
+      <td>{age}</td>
+    </tr>
   );
 }
 
-// Компонент App с тремя книгами
+// Компонент App с таблицей пользователей
 function App() {
-  // Данные для первой книги
-  const title1 = "Преступление и наказание";
-  const author1 = "Фёдор Достоевский";
-  const year1 = 1866;
-  const price1 = 450;
-
-  // Данные для второй книги
-  const title2 = "Мастер и Маргарита";
-  const author2 = "Михаил Булгаков";
-  const year2 = 1967;
-  const price2 = 520;
-
-  // Данные для третьей книги
-  const title3 = "1984";
-  const author3 = "Джордж Оруэлл";
-  const year3 = 1949;
-  const price3 = 380;
+  const users = [
+    {id: id(), name: 'user1', surn: 'surn1', age: 30},
+    {id: id(), name: 'user2', surn: 'surn2', age: 31},
+    {id: id(), name: 'user3', surn: 'surn3', age: 32},
+  ];
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <h1 style={{ textAlign: 'center' }}>Каталог книг</h1>
-      
-      <Book 
-        title={title1} 
-        author={author1} 
-        year={year1} 
-        price={price1} 
-      />
-      
-      <Book 
-        title={title2} 
-        author={author2} 
-        year={year2} 
-        price={price2} 
-      />
-      
-      <Book 
-        title={title3} 
-        author={author3} 
-        year={year3} 
-        price={price3} 
-      />
+    <div style={{ margin: '20px' }}>
+      <h2>Список пользователей</h2>
+      <table border="1" style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr style={{ backgroundColor: '#f2f2f2' }}>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+          </tr>
+        </thead>
+        <tbody>
+          <User name={users[0].name} surn={users[0].surn} age={users[0].age} />
+          <User name={users[1].name} surn={users[1].surn} age={users[1].age} />
+          <User name={users[2].name} surn={users[2].surn} age={users[2].age} />
+        </tbody>
+      </table>
     </div>
   );
 }
