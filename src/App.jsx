@@ -12,8 +12,8 @@ const initUsers = [
   {id: id(), name: 'user3', surname: 'surn3', age: 32},
 ];
 
-// Компонент User для отображения данных одного пользователя
-function User({ name, surname, age }) {
+// Компонент User с отображением id
+function User({ id, name, surname, age }) {
   return (
     <div style={{
       border: '1px solid #ddd',
@@ -22,6 +22,7 @@ function User({ name, surname, age }) {
       borderRadius: '5px',
       backgroundColor: '#f9f9f9'
     }}>
+      <p><strong>ID:</strong> {id}</p>
       <p><strong>Имя:</strong> {name}</p>
       <p><strong>Фамилия:</strong> {surname}</p>
       <p><strong>Возраст:</strong> {age}</p>
@@ -39,6 +40,7 @@ function Users() {
       {users.map(user => (
         <User
           key={user.id}
+          id={user.id}
           name={user.name}
           surname={user.surname}
           age={user.age}
