@@ -1,21 +1,24 @@
 import React from 'react';
 
+
 function App() {
+  const cities = ['Москва', 'Санкт-Петербург', 'Новосибирск', 'Екатеринбург', 'Казань'];
   const [selectedCity, setSelectedCity] = useState('');
   
-  const handleCityChange = (event) => {
-    setSelectedCity(event.target.value);
-  };
-  
+  const cityOptions = cities.map((city, index) => (
+    <option key={index} value={city}>
+      {city}
+    </option>
+  ));
+
   return (
     <div>
-      <select value={selectedCity} onChange={handleCityChange}>
+      <select 
+        value={selectedCity} 
+        onChange={(event) => setSelectedCity(event.target.value)}
+      >
         <option value="">-- Выберите город --</option>
-        <option value="Москва">Москва</option>
-        <option value="Санкт-Петербург">Санкт-Петербург</option>
-        <option value="Новосибирск">Новосибирск</option>
-        <option value="Екатеринбург">Екатеринбург</option>
-        <option value="Казань">Казань</option>
+        {cityOptions}
       </select>
       
       {selectedCity && (
@@ -24,6 +27,7 @@ function App() {
     </div>
   );
 }
+
 
 
 export default App;
