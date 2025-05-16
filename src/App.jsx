@@ -1,113 +1,52 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'; // для генерации уникальных id
+
+const initNotes = [
+  {
+    id: 'GYi9G_uC4gBF1e2SixDvu',
+    prop1: 'value11',
+    prop2: 'value12',
+    prop3: 'value13',
+  },
+  {
+    id: 'IWSpfBPSV3SXgRF87uO74',
+    prop1: 'value21',
+    prop2: 'value22',
+    prop3: 'value23',
+  },
+  {
+    id: 'JAmjRlfQT8rLTm5tG2m1L',
+    prop1: 'value31',
+    prop2: 'value32',
+    prop3: 'value33',
+  },
+];
 
 function App() {
-  const [numbers, setNumbers] = useState([1, 2, 3, 4, 5]);
-  const [inputValue, setInputValue] = useState('');
-  const [editIndex, setEditIndex] = useState(null);
-
-  // Решение задачи №1: Возведение в квадрат
-  const squareNumber = (index) => {
-    setNumbers(numbers.map((num, i) => 
-      i === index ? num * num : num
-    ));
+  const [notes, setNotes] = useState(initNotes);
+  
+  const addNewNote = () => {
+    const newNote = {
+      id: uuidv4(),
+      prop1: `value${notes.length + 1}1`,
+      prop2: `value${notes.length + 1}2`,
+      prop3: `value${notes.length + 1}3`,
+    };
+    setNotes([...notes, newNote]);
   };
-
-  // Решение задачи №2: Удаление элемента
-  const deleteItem = (index) => {
-    setNumbers(numbers.filter((_, i) => i !== index));
-  };
-
-  // Решение задачи №3: Перенос текста в инпут
-  const editItem = (index) => {
-    setInputValue(numbers[index]);
-    setEditIndex(index);
-  };
-
-  // Решение задачи №4: Сохранение изменений
-  const saveEdit = () => {
-    if (editIndex !== null) {
-      setNumbers(numbers.map((num, i) => 
-        i === editIndex ? Number(inputValue) : num
-      ));
-      setEditIndex(null);
-      setInputValue('');
-    }
-  };
-
-  // Решение задачи №5: Реверс массива
-  const reverseList = () => {
-    setNumbers([...numbers].reverse());
-  };
-
+  
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Реактивные операции с массивом</h2>
-      
-      {/* Инпут для редактирования (задачи 3-4) */}
-      <div style={{ marginBottom: '15px' }}>
-        <input
-          type="number"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onBlur={saveEdit}
-          placeholder="Редактировать элемент"
-        />
-      </div>
-      
-      {/* Кнопка реверса (задача 5) */}
-      <button 
-        onClick={reverseList}
-        style={{ marginBottom: '15px', padding: '5px 10px' }}
-      >
-        Перевернуть список
-      </button>
-      
-      {/* Список элементов */}
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {numbers.map((num, index) => (
-          <li 
-            key={index}
-            style={{ 
-              padding: '8px',
-              margin: '5px 0',
-              backgroundColor: '#f0f0f0',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}
-          >
-            {/* Клик по элементу (задачи 1 и 3) */}
-            <span 
-              onClick={() => {
-                squareNumber(index); // задача 1
-                editItem(index);    // задача 3
-              }}
-              style={{ cursor: 'pointer', flexGrow: 1 }}
-            >
-              {num}
-            </span>
-            
-            {/* Кнопка удаления (задача 2) */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                deleteItem(index);
-              }}
-              style={{ 
-                marginLeft: '10px',
-                padding: '2px 6px',
-                backgroundColor: '#ff6b6b',
-                color: 'white',
-                border: 'none',
-                borderRadius: '3px',
-                cursor: 'pointer'
-              }}
-            >
-              ×
-            </button>
+    <div>
+      <ul>
+        {notes.map(note => (
+          <li key={note.id}>
+            <span>{note.prop1}</span>
+            <span>{note.prop2}</span>
+            <span>{note.prop3}</span>
           </li>
         ))}
       </ul>
+      <button onClick={addNewNote}>Добавить элемент</button>
     </div>
   );
 }
