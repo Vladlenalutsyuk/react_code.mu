@@ -1,94 +1,105 @@
-import { useState } from 'react';
+/*1. Иммутабельное добавление элементов в массив
 
-function App() {
-  const [date, setDate] = useState({
-    year: 2025,
-    month: 12,
-    day: 31
-  });
+Для добавления элементов в массив без мутации исходного массива следует использовать:
 
-  // Функция для получения дня недели
-  function getDayOfWeek(year, month, day) {
-    const days = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
-    const dateObj = new Date(year, month - 1, day);
-    return days[dateObj.getDay()];
-  }
+Оператор spread: const newArray = [...oldArray, newElement]
 
-  // Обработчик изменения даты
-  function handleDateChange(field, event) {
-    const value = event.target.value;
-    setDate(prevDate => ({
-      ...prevDate,
-      [field]: value === '' ? '' : Number(value)
-    }));
-  }
+Метод concat: const newArray = oldArray.concat(newElement)
 
-  // Проверка валидности даты
-  function isValidDate(year, month, day) {
-    const dateObj = new Date(year, month - 1, day);
-    return (
-      dateObj.getFullYear() === year &&
-      dateObj.getMonth() === month - 1 &&
-      dateObj.getDate() === day
-    );
-  }
+Пример в React-компоненте:
 
-  const dateValid = isValidDate(date.year, date.month, date.day);
+setUsers([...users, newUser]);  // через spread
+// или
+setUsers(users.concat(newUser)); // через concat
+2. Иммутабельное изменение элементов в массиве
 
-  return (
-    <div style={{ padding: '20px' }}>
-      <h2>Редактирование даты</h2>
-      
-      <div style={{ marginBottom: '15px' }}>
-        <label>
-          День:
-          <input
-            type="number"
-            value={date.day}
-            onChange={(e) => handleDateChange('day', e)}
-            min="1"
-            max="31"
-            style={{ marginLeft: '5px', width: '50px' }}
-          />
-        </label>
-        
-        <label style={{ marginLeft: '10px' }}>
-          Месяц:
-          <input
-            type="number"
-            value={date.month}
-            onChange={(e) => handleDateChange('month', e)}
-            min="1"
-            max="12"
-            style={{ marginLeft: '5px', width: '50px' }}
-          />
-        </label>
-        
-        <label style={{ marginLeft: '10px' }}>
-          Год:
-          <input
-            type="number"
-            value={date.year}
-            onChange={(e) => handleDateChange('year', e)}
-            min="1900"
-            max="2100"
-            style={{ marginLeft: '5px', width: '70px' }}
-          />
-        </label>
-      </div>
-      
-      <div style={{ marginBottom: '15px' }}>
-        <h3>Результат:</h3>
-        {dateValid ? (
-          <p>
-            {date.day}.{date.month}.{date.year} - {getDayOfWeek(date.year, date.month, date.day)}
-          </p>
-        ) : (
-          <p style={{ color: 'red' }}>Некорректная дата!</p>
-        )}
-      </div>
-    </div>
-  );
-}
+Для изменения элементов нужно использовать метод map:
 
-export default App;
+javascript
+const updatedArray = originalArray.map((item, index) => 
+  index === targetIndex ? modifiedItem : item
+);
+React-пример:
+
+javascript
+setTodos(todos.map((todo, i) => 
+  i === 1 ? {...todo, completed: true} : todo
+));
+3. Иммутабельное удаление элементов из массива
+
+Правильные подходы:
+
+Через filter: const newArray = oldArray.filter((_, i) => i !== indexToRemove)
+
+Комбинацией slice (менее предпочтительно):
+
+javascript
+const newArray = [
+  ...oldArray.slice(0, index),
+  ...oldArray.slice(index + 1)
+];
+Пример использования:
+
+javascript
+setNumbers(numbers.filter((_, i) => i !== 0)); // удаляем первый элемент
+4. Иммутабельное добавление в массив объектов
+
+Аналогично простому массиву, но добавляем целый объект:
+
+javascript
+setProducts([...products, {id: 5, name: 'Новый продукт'}]);
+5. Иммутабельное изменение в массиве объектов
+
+Основные подходы:
+
+По идентификатору:
+
+javascript
+setStudents(students.map(student => 
+  student.id === 101 ? {...student, grade: 'A'} : student
+));
+По индексу (если нет уникального id):
+
+javascript
+setItems(items.map((item, index) => 
+  index === 2 ? {...item, checked: true} : item
+));
+6. Иммутабельное удаление из массива объектов
+
+Правильные методы:
+
+По id:
+
+javascript
+setEmployees(employees.filter(emp => emp.id !== 205));
+По индексу:
+
+javascript
+setPosts(posts.filter((_, i) => i !== 3));
+Общие рекомендации:
+
+Всегда создавайте новые массивы/объекты вместо изменения существующих
+
+Для сложных структур делайте глубокие копии
+
+Используйте spread-оператор (...) для копирования объектов и массивов
+
+Комбинируйте методы (map + filter + spread) для сложных операций
+
+Для вложенных структур рассмотрите использование библиотек типа Immer
+
+Пример комплексного обновления:
+
+javascript
+// Обновление вложенного свойства объекта в массиве
+setData(data.map(item => 
+  item.id === 42 
+    ? {
+        ...item,
+        details: {
+          ...item.details,
+          price: item.details.price * 1.1
+        }
+      }
+    : item
+));
