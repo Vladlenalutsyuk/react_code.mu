@@ -1,52 +1,59 @@
 import React from 'react';
 
+
 function App() {
-  const [selectedValue, setSelectedValue] = useState('1');
+  const [favoriteLanguage, setFavoriteLanguage] = useState('');
   
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+  const handleLanguageChange = (event) => {
+    setFavoriteLanguage(event.target.value);
   };
   
   return (
     <div>
+      <h3>Выберите ваш любимый язык программирования:</h3>
+      
       <label>
         <input
           type="radio"
-          name="radioGroup"
-          value="1"
-          checked={selectedValue === '1'}
-          onChange={handleChange}
+          name="programmingLanguage"
+          value="JavaScript"
+          checked={favoriteLanguage === 'JavaScript'}
+          onChange={handleLanguageChange}
         />
-        Вариант 1
+        JavaScript
       </label>
       
       <label>
         <input
           type="radio"
-          name="radioGroup"
-          value="2"
-          checked={selectedValue === '2'}
-          onChange={handleChange}
+          name="programmingLanguage"
+          value="Python"
+          checked={favoriteLanguage === 'Python'}
+          onChange={handleLanguageChange}
         />
-        Вариант 2
+        Python
       </label>
       
       <label>
         <input
           type="radio"
-          name="radioGroup"
-          value="3"
-          checked={selectedValue === '3'}
-          onChange={handleChange}
+          name="programmingLanguage"
+          value="Java"
+          checked={favoriteLanguage === 'Java'}
+          onChange={handleLanguageChange}
         />
-        Вариант 3
+        Java
       </label>
       
-      <p>Вы выбрали: {selectedValue}</p>
+      {favoriteLanguage && (
+        <p>
+          Ваш любимый язык: {favoriteLanguage}
+          {favoriteLanguage === 'JavaScript' && ' - Отличный выбор! JavaScript это мощный и гибкий язык!'}
+        </p>
+      )}
     </div>
   );
 }
-
 
 export default App;
 
