@@ -2,10 +2,14 @@ import { useState } from 'react';
 
 function App() {
   const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+  const [inputValue, setInputValue] = useState('');
   
-  const addNote = () => {
-    // Иммутабельно добавляем новый элемент (число на 1 больше последнего)
-    setNotes([...notes, notes.length + 1]);
+  const handleAddNote = () => {
+    if (inputValue.trim()) {  // Проверяем, что строка не пустая
+      // Иммутабельно добавляем новый элемент из инпута
+      setNotes([...notes, inputValue]);
+      setInputValue('');  // Очищаем инпут после добавления
+    }
   };
   
   return (
@@ -15,7 +19,16 @@ function App() {
           <li key={index}>{note}</li>
         ))}
       </ul>
-      <button onClick={addNote}>Добавить элемент</button>
+      
+      <div style={{ marginTop: '20px' }}>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Введите текст"
+        />
+        <button onClick={handleAddNote}>Добавить</button>
+      </div>
     </div>
   );
 }
