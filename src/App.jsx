@@ -1,33 +1,30 @@
 import React from 'react';
 
 function App() {
-  const [isVisible, setIsVisible] = useState(false);
-
+  const [selectedCity, setSelectedCity] = useState('');
+  
+  const handleCityChange = (event) => {
+    setSelectedCity(event.target.value);
+  };
+  
   return (
-    <div style={{ padding: '20px' }}>
-      <label style={{ display: 'flex', alignItems: 'center' }}>
-        <input
-          type="checkbox"
-          checked={isVisible}
-          onChange={() => setIsVisible(!isVisible)}
-          style={{ marginRight: '10px' }}
-        />
-        Показать абзац
-      </label>
-
-      {isVisible && (
-        <p style={{ 
-          marginTop: '15px',
-          padding: '10px',
-          backgroundColor: '#e9f7ef',
-          borderRadius: '5px'
-        }}>
-          Этот абзац виден только когда чекбокс отмечен!
-        </p>
+    <div>
+      <select value={selectedCity} onChange={handleCityChange}>
+        <option value="">-- Выберите город --</option>
+        <option value="Москва">Москва</option>
+        <option value="Санкт-Петербург">Санкт-Петербург</option>
+        <option value="Новосибирск">Новосибирск</option>
+        <option value="Екатеринбург">Екатеринбург</option>
+        <option value="Казань">Казань</option>
+      </select>
+      
+      {selectedCity && (
+        <p>Ваш выбор: {selectedCity}</p>
       )}
     </div>
   );
 }
+
 
 export default App;
 
