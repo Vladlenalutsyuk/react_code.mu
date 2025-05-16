@@ -1,57 +1,56 @@
 import { useState } from 'react';
 
+// Функция для генерации id (предполагаемая реализация)
+function id() {
+  return Math.random().toString(36).substring(2, 9);
+}
+
+const initNotes = [
+  {
+    id: id(),
+    name: 'name1',
+    desc: 'long description 1',
+    show: false,
+  },
+  {
+    id: id(),
+    name: 'name2',
+    desc: 'long description 2',
+    show: false,
+  },
+  {
+    id: id(),
+    name: 'name3',
+    desc: 'long description 3',
+    show: false,
+  },
+];
+
 function App() {
   const [notes, setNotes] = useState(initNotes);
-  const [input1, setInput1] = useState('');
-  const [input2, setInput2] = useState('');
-  const [input3, setInput3] = useState('');
-  const [selectedId, setSelectedId] = useState(null);
-
-  const handleFillInputs = (id) => {
-    const note = notes.find(note => note.id === id);
-    if (note) {
-      setInput1(note.prop1);
-      setInput2(note.prop2);
-      setInput3(note.prop3);
-      setSelectedId(id); // Запоминаем id выбранной заметки
-    }
+  
+  const toggleDesc = (id) => {
+    setNotes(notes.map(note => {
+      if (note.id === id) {
+        return { ...note, show: !note.show };
+      }
+      return note;
+    }));
   };
-
-  const handleUpdateNote = () => {
-    if (selectedId) {
-      setNotes(notes.map(note => {
-        if (note.id === selectedId) {
-          return { ...note, prop1: input1, prop2: input2, prop3: input3 };
-        }
-        return note;
-      }));
-    }
-  };
-
+  
   const result = notes.map(note => {
     return (
-      <li key={note.id}>
-        <span>{note.prop1}</span>
-        <span>{note.prop2}</span>
-        <span>{note.prop3}</span>
-        <button onClick={() => handleFillInputs(note.id)}>Fill Inputs</button>
-      </li>
+      <p key={note.id}>
+        {note.name}, 
+        {note.show && <i>{note.desc}</i>}
+        <button onClick={() => toggleDesc(note.id)}>
+          {note.show ? 'Скрыть' : 'Показать'} описание
+        </button>
+      </p>
     );
   });
-
-  return (
-    <div>
-      <div>
-        <input value={input1} onChange={(e) => setInput1(e.target.value)} />
-        <input value={input2} onChange={(e) => setInput2(e.target.value)} />
-        <input value={input3} onChange={(e) => setInput3(e.target.value)} />
-        <button onClick={handleUpdateNote} disabled={!selectedId}>
-          Update Note
-        </button>
-      </div>
-      <ul>{result}</ul>
-    </div>
-  );
+  
+  return <div>{result}</div>;
 }
 
 export default App;
