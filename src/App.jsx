@@ -1,39 +1,42 @@
 import React, { useState } from 'react';
 
-function getSum(arr) {
-  return arr.reduce((sum, elem) => sum + Number(elem), 0);
-}
-
-function Calculator() {
-  const [value, setValue] = useState('');
-  const [nums, setNums] = useState([1, 2, 3]);
+function App() {
+  const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+  const [editNum, setEditNum] = useState(null);
   
-  const sum = getSum(nums); // Вычисляем сумму при каждом рендере
+  // Вычисляемое значение вместо отдельного стейта
+  const value = editNum !== null ? notes[editNum] : '';
 
-  function handleChange(event) {
-    setValue(event.target.value);
-  }
-  
-  function handleBlur(event) {
-    if (event.target.value) {
-      setNums([...nums, Number(event.target.value)]);
-      setValue('');
+  const result = notes.map((note, id) => {
+    return (
+      <p key={id} onClick={() => setEditNum(id)}>
+        {note}
+      </p>
+    );
+  });
+
+  function changeItem(event) {
+    if (editNum !== null) {
+      const newNotes = [...notes];
+      newNotes[editNum] = Number(event.target.value);
+      setNotes(newNotes);
     }
   }
-  
+
   return (
     <div>
-      <p>Сумма: {sum}</p>
-      <input 
-        type="number"
-        value={value} 
-        onChange={handleChange} 
-        onBlur={handleBlur} 
-        placeholder="Добавить число"
-      />
-      <p>Числа: {nums.join(', ')}</p>
+      {result}
+      {editNum !== null && (
+        <input 
+          type="number"
+          value={value} 
+          onChange={changeItem} 
+          onBlur={() => setEditNum(null)}
+          autoFocus
+        />
+      )}
     </div>
   );
 }
 
-export default Calculator;
+export default App;
