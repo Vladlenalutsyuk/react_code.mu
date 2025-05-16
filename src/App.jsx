@@ -1,44 +1,49 @@
 import React from 'react';
 
-// Компонент User (улучшенная версия с props)
-function User({ name, email, age }) {
+// Компонент Employee с деструктуризацией props
+function Employee({ lastName, firstName, middleName, salary }) {
   return (
-    <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', borderRadius: '5px' }}>
-      <h3>Информация о пользователе</h3>
-      <p><strong>Имя:</strong> {name}</p>
-      <p><strong>Email:</strong> {email}</p>
-      {age && <p><strong>Возраст:</strong> {age}</p>}
+    <div style={{
+      border: '1px solid #ddd',
+      padding: '15px',
+      margin: '10px',
+      borderRadius: '8px',
+      backgroundColor: '#f9f9f9'
+    }}>
+      <h3>Данные сотрудника:</h3>
+      <p><strong>Фамилия:</strong> {lastName}</p>
+      <p><strong>Имя:</strong> {firstName}</p>
+      <p><strong>Отчество:</strong> {middleName}</p>
+      <p><strong>Зарплата:</strong> {salary} руб.</p>
     </div>
   );
 }
 
-// Компонент App с несколькими пользователями
+// Компонент App с тремя сотрудниками
 function App() {
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', fontFamily: 'Arial' }}>
-      <h1 style={{ color: 'darkblue' }}>Список пользователей</h1>
+    <div style={{ maxWidth: '800px', margin: '0 auto', fontFamily: 'Arial' }}>
+      <h1 style={{ textAlign: 'center', color: '#333' }}>Список сотрудников компании</h1>
       
-      <User 
-        name="Иван Иванов" 
-        email="ivan@example.com" 
-        age={28} 
+      <Employee
+        lastName="Иванов"
+        firstName="Иван"
+        middleName="Иванович"
+        salary={85000}
       />
       
-      <User 
-        name="Мария Петрова" 
-        email="maria@example.com" 
-        age={24}
+      <Employee
+        lastName="Петрова"
+        firstName="Мария"
+        middleName="Сергеевна"
+        salary={92000}
       />
       
-      <User 
-        name="Алексей Сидоров" 
-        email="alex@example.com" 
-      />
-      
-      <User 
-        name="Елена Васильева" 
-        email="elena@example.com" 
-        age={31}
+      <Employee
+        lastName="Сидоров"
+        firstName="Алексей"
+        middleName="Петрович"
+        salary={78000}
       />
     </div>
   );
