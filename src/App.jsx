@@ -1,58 +1,36 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// Стилизованные компоненты
+// Стилизованный контейнер (div)
 const Container = styled.div`
-  margin: 20px;
-  padding: 20px;
-  border: 2px solid #3498db;
-  border-radius: 8px;
-  background-color: #f8f9fa;
-  text-align: center;
-  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  gap: 10px; // Отступ между кнопками
 `;
 
-const Title = styled.h2`
-  color: #2c3e50;
-  margin-bottom: 15px;
-`;
-
+// Стилизованная кнопка
 const Button = styled.button`
-  padding: 10px 20px;
-  margin: 0 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 10px;
   font-size: 16px;
-  transition: background-color 0.3s;
-  color: white;
-`;
-
-const PrimaryButton = styled(Button)`
-  background-color: #3498db;
-  
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')}; // Курсор зависит от состояния disabled
+  background-color: ${props => (props.disabled ? '#f0f0f0' : '#007bff')};
+  color: ${props => (props.disabled ? '#999' : '#fff')};
   &:hover {
-    background-color: #2980b9;
+    background-color: ${props => (props.disabled ? '#f0f0f0' : '#0056b3')};
   }
 `;
 
-const SecondaryButton = styled(Button)`
-  background-color: #2ecc71;
-  
-  &:hover {
-    background-color: #27ae60;
-  }
-`;
-
-// Основной компонент
-function App() {
+function Block() {
   return (
     <Container>
-      <Title>Кнопки со Styled Components</Title>
-      <PrimaryButton>Основная кнопка</PrimaryButton>
-      <SecondaryButton>Дополнительная кнопка</SecondaryButton>
+      <Button disabled>Button 1</Button>
+      <Button>Button 2</Button>
+      <Button type="reset">Button 3</Button>
     </Container>
   );
 }
 
-export default App;
+export default Block;
