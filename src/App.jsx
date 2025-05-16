@@ -1,53 +1,23 @@
 import React, { useState } from 'react';
 
-// Функция для генерации id
-function id() {
-  return Math.random().toString(36).substring(2, 9);
-}
-
-// Инициализационные данные
-const initUsers = [
-  {id: id(), name: 'user1', surname: 'surn1', age: 30},
-  {id: id(), name: 'user2', surname: 'surn2', age: 31},
-  {id: id(), name: 'user3', surname: 'surn3', age: 32},
-];
-
-// Компонент User с отображением id
-function User({ id, name, surname, age }) {
-  return (
-    <div style={{
-      border: '1px solid #ddd',
-      padding: '15px',
-      margin: '10px',
-      borderRadius: '5px',
-      backgroundColor: '#f9f9f9'
-    }}>
-      <p><strong>ID:</strong> {id}</p>
-      <p><strong>Имя:</strong> {name}</p>
-      <p><strong>Фамилия:</strong> {surname}</p>
-      <p><strong>Возраст:</strong> {age}</p>
-    </div>
-  );
-}
-
-// Родительский компонент Users
-function Users() {
-  const [users, setUsers] = useState(initUsers);
-
-  return (
-    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <h2 style={{ textAlign: 'center' }}>Список пользователей</h2>
-      {users.map(user => (
-        <User
-          key={user.id}
-          id={user.id}
-          name={user.name}
-          surname={user.surname}
-          age={user.age}
-        />
-      ))}
-    </div>
-  );
+function Test({ initialData }) {  // data может приходить как пропс
+  const [isEdit, setIsEdit] = useState(false);  // стейт
+  const [data, setData] = useState(initialData);  // стейт
+  
+  let elem;  // переменная
+  
+  if (isEdit) {
+    elem = <input value={data} onChange={e => setData(e.target.value)} />;
+  } else {
+    elem = <span>{data}</span>;
+  }
+  
+  return <div>
+    {elem}
+    <button onClick={() => setIsEdit(!isEdit)}>
+      {isEdit ? 'Save' : 'Edit'}
+    </button>
+  </div>;
 }
 
 export default Users;
