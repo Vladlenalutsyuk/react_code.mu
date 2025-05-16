@@ -2,55 +2,21 @@ import React from 'react';
 
 
 function App() {
-  const [favoriteLanguage, setFavoriteLanguage] = useState('');
-  
-  const handleLanguageChange = (event) => {
-    setFavoriteLanguage(event.target.value);
-  };
+  const [value, setValue] = useState('Привет, React!');
   
   return (
     <div>
-      <h3>Выберите ваш любимый язык программирования:</h3>
-      
-      <label>
-        <input
-          type="radio"
-          name="programmingLanguage"
-          value="JavaScript"
-          checked={favoriteLanguage === 'JavaScript'}
-          onChange={handleLanguageChange}
-        />
-        JavaScript
-      </label>
-      
-      <label>
-        <input
-          type="radio"
-          name="programmingLanguage"
-          value="Python"
-          checked={favoriteLanguage === 'Python'}
-          onChange={handleLanguageChange}
-        />
-        Python
-      </label>
-      
-      <label>
-        <input
-          type="radio"
-          name="programmingLanguage"
-          value="Java"
-          checked={favoriteLanguage === 'Java'}
-          onChange={handleLanguageChange}
-        />
-        Java
-      </label>
-      
-      {favoriteLanguage && (
-        <p>
-          Ваш любимый язык: {favoriteLanguage}
-          {favoriteLanguage === 'JavaScript' && ' - Отличный выбор! JavaScript это мощный и гибкий язык!'}
-        </p>
-      )}
+      <h3>Пример с defaultValue:</h3>
+      <input 
+        type="text" 
+        defaultValue={value} 
+        placeholder="Введите текст"
+      />
+      <p>Текущее состояние: {value}</p>
+      <button onClick={() => setValue('Новое значение')}>
+        Изменить состояние
+      </button>
+      <p><small>Обратите внимание, что изменение состояния не влияет на значение инпута</small></p>
     </div>
   );
 }
