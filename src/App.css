@@ -1,10 +1,66 @@
-.App {
-  font-family: Avenir, Helvetica, sans-serif; 
-  background-color: #f5f5dc; 
-  color: #2c3e50;
-  text-align: left;
-  padding: 20px;
+.wrapper {
+  display: flex;
 }
 
-body {background-color: beige;
+.menu {
+  flex: 1;
+  margin-left: 10px;
+  margin-right: 20px;
+  background-color: greenyellow;
+  border-radius: 10px;
+}
+
+.menu input {
+  border-radius: 5px;
+}
+
+.editor {
+  flex: 2;
+}
+
+.editor input {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.editor textarea {
+  border-radius: 5px;
+  width: 100%;
+}
+
+.menu ul li {
+  margin-top: 10px;
+  font-size: 15px;
+  background-color: rgb(26, 152, 76);
+  width: 490px;
+  border-radius: 5px;
+}
+
+.menu ul li span {
+  margin-left: 10px;
+}
+
+li button {
+  margin-left: 10px; 
+  border-radius: 5px;
+  background-color: rgb(235, 16, 23);
+}
+
+.save_or_add button {
+  width: 100px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: rgb(50, 203, 98);
+}
+
+body {
+  background-color: rgb(24, 139, 89);
+}
+
+h1 {
+  text-align: center;
+  font-size: 40px;
+  padding-bottom: 20px;
 }
