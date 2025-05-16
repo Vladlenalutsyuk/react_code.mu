@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Функция для генерации id (предполагаемая реализация)
+// Функция для генерации id
 function id() {
   return Math.random().toString(36).substring(2, 9);
 }
@@ -16,7 +16,7 @@ function User({ name, surn, age }) {
   );
 }
 
-// Компонент App с таблицей пользователей
+// Компонент App с таблицей пользователей (с использованием map)
 function App() {
   const users = [
     {id: id(), name: 'user1', surn: 'surn1', age: 30},
@@ -36,9 +36,14 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          <User name={users[0].name} surn={users[0].surn} age={users[0].age} />
-          <User name={users[1].name} surn={users[1].surn} age={users[1].age} />
-          <User name={users[2].name} surn={users[2].surn} age={users[2].age} />
+          {users.map(user => (
+            <User 
+              key={user.id}
+              name={user.name}
+              surn={user.surn}
+              age={user.age}
+            />
+          ))}
         </tbody>
       </table>
     </div>
