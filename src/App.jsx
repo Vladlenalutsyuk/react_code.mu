@@ -1,89 +1,57 @@
 import React from 'react';
+import styled from 'styled-components';
 
+// Стилизованные компоненты
+const Container = styled.div`
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  text-align: center;
+  max-width: 500px;
+`;
+
+const Title = styled.h2`
+  color: #2c3e50;
+  margin-bottom: 15px;
+`;
+
+const Button = styled.button`
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  color: white;
+`;
+
+const PrimaryButton = styled(Button)`
+  background-color: #3498db;
+  
+  &:hover {
+    background-color: #2980b9;
+  }
+`;
+
+const SecondaryButton = styled(Button)`
+  background-color: #2ecc71;
+  
+  &:hover {
+    background-color: #27ae60;
+  }
+`;
+
+// Основной компонент
 function App() {
-  // Основные цвета
-  const primaryColor = '#3498db';
-  const primaryHover = '#2980b9';
-  const secondaryColor = '#2ecc71';
-  const secondaryHover = '#27ae60';
-  const bgColor = '#f8f9fa';
-  const textColor = '#2c3e50';
-  const white = 'white';
-
-  // Размеры и отступы
-  const containerMargin = '20px';
-  const containerPadding = '20px';
-  const buttonPadding = '10px 20px';
-  const buttonMargin = '0 10px';
-  const titleMarginBottom = '15px';
-  const maxWidth = '500px';
-
-  // Границы
-  const containerBorder = '2px solid #3498db';
-  const borderRadius = '8px';
-  const noBorder = 'none';
-
-  // Текст
-  const textAlign = 'center';
-  const fontSize = '16px';
-
-  // Эффекты
-  const transition = 'background-color 0.3s';
-  const cursorPointer = 'pointer';
-
   return (
-    <div style={{
-      margin: containerMargin,
-      padding: containerPadding,
-      border: containerBorder,
-      borderRadius: borderRadius,
-      backgroundColor: bgColor,
-      textAlign: textAlign,
-      maxWidth: maxWidth
-    }}>
-      <h2 style={{
-        color: textColor,
-        marginBottom: titleMarginBottom
-      }}>
-        Кнопки с переменными стилей
-      </h2>
-      
-      <button 
-        style={{
-          padding: buttonPadding,
-          margin: buttonMargin,
-          border: noBorder,
-          borderRadius: borderRadius,
-          cursor: cursorPointer,
-          fontSize: fontSize,
-          transition: transition,
-          backgroundColor: primaryColor,
-          color: white
-        }}
-        onMouseEnter={(e) => e.target.style.backgroundColor = primaryHover}
-        onMouseLeave={(e) => e.target.style.backgroundColor = primaryColor}
-      >
-        Основная кнопка
-      </button>
-      
-      <button 
-        style={{
-          padding: buttonPadding,
-          margin: buttonMargin,
-          border: noBorder,
-          borderRadius: borderRadius,
-          cursor: cursorPointer,
-          fontSize: fontSize,
-          transition: transition,
-          backgroundColor: secondaryColor,
-          color: white
-        }}
-        onMouseEnter={(e) => e.target.style.backgroundColor = secondaryHover}
-        onMouseLeave={(e) => e.target.style.backgroundColor = secondaryColor}
-      >
-        Дополнительная кнопка
-      </button>
-    </div>
+    <Container>
+      <Title>Кнопки со Styled Components</Title>
+      <PrimaryButton>Основная кнопка</PrimaryButton>
+      <SecondaryButton>Дополнительная кнопка</SecondaryButton>
+    </Container>
   );
 }
 
