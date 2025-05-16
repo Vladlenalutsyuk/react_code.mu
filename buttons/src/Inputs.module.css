@@ -1,5 +1,6 @@
 /* src/components/Inputs.module.css */
 .common-input {
+  composes: beauty from '../../App.module.css';
   font-size: 16px;
   padding: 8px;
 }
