@@ -1,24 +1,29 @@
 /* src/components/Inputs.module.css */
+.common-input {
+  font-size: 16px;
+  padding: 8px;
+}
+
 .input1 {
+  composes: common-input;
   background-color: lightblue;
   border: 2px solid navy;
   color: black;
-  padding: 5px;
   margin: 5px;
 }
 
 .input2 {
+  composes: common-input;
   background-color: lightgreen;
   border: 2px solid darkgreen;
   color: darkblue;
-  padding: 5px;
   margin: 5px;
 }
 
 .input3 {
+  composes: common-input;
   background-color: lightpink;
   border: 2px solid maroon;
   color: white;
-  padding: 5px;
   margin: 5px;
 }
