@@ -1,0 +1,21 @@
+<!-- src/app/components/checklist/checklist.component.html -->
+<div class="checklist">
+  <div class="add-todo">
+    <input
+      type="text"
+      [(ngModel)]="newTodoText"
+      placeholder="Add a new task"
+      (keyup.enter)="addTodo()"
+    />
+    <button (click)="addTodo()">Add</button>
+  </div>
+  <div class="todo-list">
+    <app-checklist-item
+      *ngFor="let todo of todos"
+      [todo]="todo"
+      (delete)="deleteTodo($event)"
+      (toggle)="toggleTodo($event)"
+      (update)="updateTodo($event)"
+    ></app-checklist-item>
+  </div>
+</div>
